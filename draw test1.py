@@ -14,6 +14,7 @@ def main():
 
     x  = 200
     y = 150
+    dx, dy = 5, 5
     size = 30
     pygame.draw.rect(DISPLAY,blue,(x,y,size,size))
 
@@ -24,9 +25,18 @@ def main():
                 sys.exit()
 
         pygame.draw.rect(DISPLAY, WHITE, (x, y, size, size))
-        x = x + 5
-        if (x > 500):
-            x = 0
+        nextx = x + dx
+        if (nextx>= 500 - size or nextx <= 0):
+            dx = -dx
+            nextx = x + dx
+
+        nexty = y + dy
+        if (nexty >= 400 - size or nexty <= 0):
+            dy = -dy
+            nexty = y + dy
+
+        x, y = nextx, nexty
+
         pygame.draw.rect(DISPLAY, blue, (x, y, size, size))
         pygame.display.update()
         time.sleep(0.01)
