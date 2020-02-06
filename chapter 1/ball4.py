@@ -20,7 +20,7 @@ def main():
     SIZE = 30
 
     barx = 50
-    bary = 100
+    bary = nextbary = 100
     BAR_SIZE_X = 30
     BAR_SIZE_Y = 90
 
@@ -35,9 +35,12 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    bary = bary - 5
+                    nextbary = bary - 5
                 if event.key == pygame.K_DOWN:
-                    bary = bary + 5
+                    nextbary = bary + 5
+
+
+        pygame.draw.rect(DISPLAY,WHITE,(barx,bary,BAR_SIZE_X,BAR_SIZE_Y))
 
         pygame.draw.rect(DISPLAY, WHITE, (x, y, SIZE, SIZE))
         nextx = x + dx
@@ -54,7 +57,10 @@ def main():
         x = nextx
         y = nexty
 
+        bary = nextbary
+
         pygame.draw.rect(DISPLAY, BLUE, (x, y, SIZE, SIZE))
+        pygame.draw.rect(DISPLAY,BLUE,(barx,bary,BAR_SIZE_X,BAR_SIZE_Y))
         pygame.display.update()
         time.sleep(0.01)
 
